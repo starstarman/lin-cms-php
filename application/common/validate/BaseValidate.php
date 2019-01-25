@@ -26,8 +26,6 @@ class BaseValidate extends Validate
             //抛出参数错误异常
             throw new ParameterException(['msg' => $error]);
         } else {
-            //调用获取过滤参数的方法，返回给控制器
-//            return $this->getDataByRule($params);
             return $result;
         }
     }

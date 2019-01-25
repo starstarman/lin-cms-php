@@ -13,7 +13,7 @@ use think\Model;
 
 class User extends Model
 {
-    public function check_password($password){
-
+    public function check_password($password,$raw){
+        return password_verify($password,$raw);
     }
 }

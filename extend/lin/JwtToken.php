@@ -45,6 +45,6 @@ class JwtToken
 //            'token_type'=>'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
         ];
         Header("HTTP/1.1 201 Created");
-        return json_encode($jsonList); //返回给客户端token信息
+        return json($jsonList); //返回给客户端token信息
     }
 }

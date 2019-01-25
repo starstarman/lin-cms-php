@@ -35,11 +35,10 @@ class User extends Model
     public function verify($nickname,$password){
 
         $userInfo = $this->where(['nickname'=>$nickname])->find();
-
         if (!$userInfo){
             $this->error = '帐号不存在';
             throw new NotFound(['msg'=>$this->error]);
-        }elseif($userInfo['password'] != $this->userService->check_password($password)){
+        }elseif(!$this->userService->check_password($password,$userInfo['password'])){
             $this->error = '密码错误，请输入正确密码';
             throw new AuthFailed(['msg'=>$this->error]);
         }else{
@@ -47,10 +46,4 @@ class User extends Model
         }
     }
 
-//    private function check_password($password){
-//        if (isset($password)){
-//            return false;
-//        }
-//        return
-//    }
 }
