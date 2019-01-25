@@ -22,9 +22,28 @@ function resultArray($array)
         $code = 400;
         $array['data'] = '';
     }
+
     return [
         'code'  => $code,
         'data'  => $array['data'],
         'error' => $array['error']
+    ];
+
+
+}
+
+function resultArray_error($array)
+{
+    if(isset($array['data'])) {
+        $array['error'] = '';
+        $code = 200;
+    } elseif (isset($array['error'])) {
+        $code = 400;
+        $array['data'] = '';
+    }
+    return [
+        'error_code'  => $code,
+        'msg'  => $array['data'],
+        'request' => $array['error']
     ];
 }

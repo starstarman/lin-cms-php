@@ -9,7 +9,7 @@
 namespace app\common\validate;
 
 
-use think\Exception;
+use lin\Exception\ParameterException;
 use think\Request;
 use think\Validate;
 
@@ -20,9 +20,14 @@ class BaseValidate extends Validate
         $request = Request::instance();
         $params= $request->param();
         $result = $this->batch()->check($params);
-        if (!$result){
-            throw new Exception($this->error);
-        }else{
+        if (!$result) {
+            //如果结果为false,调用getError方法获取错误信息
+            $error = $this->getError();
+            //抛出参数错误异常
+            throw new ParameterException(['msg' => $error]);
+        } else {
+            //调用获取过滤参数的方法，返回给控制器
+//            return $this->getDataByRule($params);
             return $result;
         }
     }

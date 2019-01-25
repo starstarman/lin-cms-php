@@ -11,6 +11,7 @@ namespace app\api\controller\cms;
 
 use app\common\controller\Base;
 use app\common\validate\FormValidate;
+use lin\model\User as UserModel;
 use lin\Auth;
 use lin\JwtToken;
 
@@ -18,10 +19,14 @@ class User extends Base
 {
     public function login()
     {
+        $userModel = new UserModel('user');
         $userData = input('param.');
-        (new FormValidate())->goCheck();
+
+        (new FormValidate())->scene('login')->go_check();
+        $userInfo =$userModel->verify($userData['nickname'],$userData['password']);
+
 //        $test = new JwtToken();
-//        $test->authorizations();
+////        $test->authorizations();
         //如果用户名密码正确颁发令牌
 
         //假如正确
