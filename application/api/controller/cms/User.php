@@ -12,7 +12,7 @@ namespace app\api\controller\cms;
 use app\common\controller\Base;
 use app\common\validate\FormValidate;
 use lin\model\User as UserModel;
-use lin\JwtToken;
+use lin\Jwt;
 
 class User extends Base
 {
@@ -24,7 +24,7 @@ class User extends Base
         (new FormValidate())->scene('login')->go_check();
         $userInfo =$userModel->verify($userData['nickname'],$userData['password']);
 
-        $token = (new JwtToken())->get_tokens($userInfo['id']);
+        $token = (new Jwt())->get_tokens($userInfo['id']);
         return $token;
     }
 

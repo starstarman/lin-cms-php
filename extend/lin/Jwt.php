@@ -9,10 +9,10 @@
 namespace lin;
 
 
-use Firebase\JWT\JWT;
+use Firebase\JWT\JWT as Jwt_extended;
 use think\Config;
 
-class JwtToken
+class Jwt
 {
     /**
      * 获取token
@@ -40,8 +40,8 @@ class JwtToken
         $refresh_token['exp'] = Config::get('JWT_REFRESH_TOKEN_EXPIRES'); //refresh_token过期时间
 
         $jsonList = [
-            'access_token'=>JWT::encode($access_token,$key),
-            'refresh_token'=>JWT::encode($refresh_token,$key),
+            'access_token'=>Jwt_extended::encode($access_token,$key),
+            'refresh_token'=>Jwt_extended::encode($refresh_token,$key),
 //            'token_type'=>'bearer' //token_type：表示令牌类型，该值大小写不敏感，这里用bearer
         ];
         Header("HTTP/1.1 201 Created");

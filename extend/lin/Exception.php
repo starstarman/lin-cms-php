@@ -12,15 +12,15 @@ use lin\Exception\APIException;
 use think\Config;
 use think\exception\Handle;
 use think\Log;
-use Exception;
+use Exception as E;
 
-class ExceptionHandler  extends Handle
+class Exception  extends Handle
 {
     private  $code;
     private  $msg;
     private  $error_code;
 
-    public function render(Exception $e)
+    public function render(E $e)
     {
         //如果这个传入的异常类是我们自定义的异常类的话,就说明这个异常在我们的控制之中
         if ($e instanceof APIException) {

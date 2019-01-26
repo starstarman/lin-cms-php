@@ -16,4 +16,8 @@ class User extends Model
     public function check_password($password,$raw){
         return password_verify($password,$raw);
     }
+
+    public function create_password($password){
+        return password_hash($password,PASSWORD_DEFAULT);
+    }
 }
